@@ -5,6 +5,11 @@ import xbmc
 import xbmcgui
 import resources.lib.settings as settings
 import resources.lib.kodiutils as utils
+from xbmcswift2 import Plugin
+
+from resources.lib.constants import *
+
+plugin = Plugin()
 
 __addonid__ = 'plugin.audio.accuradio'
 __settings__ = settings.Settings(__addonid__, sys.argv)
@@ -15,11 +20,11 @@ def isConnected():
 def get_home_page_items():
     return [
         {
-            "name": __settings__.get_string(STR_GENRE),
+            "name": plugin.get_string(STR_GENRE),
             "url" : ""
         },
         {
-            "name": __settings__.get_string(STR_SEARCH),
+            "name": plugin.get_string(STR_SEARCH),
             "url" : ""
         }
     ]
@@ -32,23 +37,27 @@ def get_genre_items():
     genres = [
         {
             "name": genre["name"],
-            "url": f"https://accuradio.com/c/m/json/genre/?param={get_genre_canonical_url( genre )}"
+            "url": f"https://accuradio.com/c/m/json/genre/?param={get_genre_canonical_url( genre )}",
+            "description": f"{genre['channels']} {plugin.get_string(STR_CHANNELS)}",
         }
         for genre in content["brands"] ]
 
     return genres
 
 def get_genre_canonical_url( genre ):
-    return genre["canonical_url"] if genre["canonical_url"]!="" else genre["name"].lower()
+    return genre["param"] if genre["param"]!="" else genre["name"].lower()
 
 def get_channel_items(url):
     content = fetch_url(url)
 
+    if "channels" not in content: return []
+    
     channels = [
         {
             "name": channel["name"],
             "url": f"https://accuradio.com/playlist/json/{channel['_id']['$oid']}",
-            "thumbnail": f"https://c2.accu.fm/tiles/default/{channel['oldid']}.jpg"
+            "thumbnail": f"https://c2.accu.fm/tiles/default/{channel['oldid']}.jpg",
+            "description": f"{channel['description']}\n{channel['track_count'] if 'track_count' in channel else 0} {plugin.get_string(STR_TRACKS)}"
         }
         for channel in content["channels"] ]
                        
@@ -67,7 +76,9 @@ def get_track_items(url):
             "album_name": track["album"]["title"],
             "year": track["album"]["year"],
             "thumbnail": f"https://www.accuradio.com/static/images/covers300{track['album']['cdcover']}",
-        } if "album" in track else {})
+        } if "album" in track else {
+            "thumbnail": "https://static.accuradio.com/static/images/2014/defaultTile.jpg"
+        })
         for track in content
         if "ad_type" not in track
     ]
@@ -82,7 +93,7 @@ def fetch_url(url):
 
 def get_listitem_genre():    
     item = xbmcgui.ListItem(
-        __settings__.get_string(STR_GENRE),
+        plugin.get_string(STR_GENRE),
         __settings__.get_string(STR_GENRE))
     url = utils.add_params(
         root=__settings__.get_argv(0), params={'path': 'browse_genres'})

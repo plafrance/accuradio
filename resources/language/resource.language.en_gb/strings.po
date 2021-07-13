@@ -1,0 +1,49 @@
+# Kodi Media Center language file
+# Addon Name: Accuradio
+# Addon id: plugin.audio.accuradio
+# Addon Provider: Patrick Lafrance
+
+msgid ""
+msgstr ""
+"Project-Id-Version: Kodi Addons\n"
+"Report-Msgid-Bugs-To: https://forum.kodi.tv/\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Kodi Translation Team\n"
+"Language-Team: Team-Kodi\n"
+"Language: en_gb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.7.1\n"
+
+# Labels
+msgctxt "#30100"
+msgid "Genres"
+
+msgctxt "#30101"
+msgid "Rechercher"
+
+msgctxt "#30105"
+msgid "stations"
+
+msgctxt "#30106"
+msgid "tracks"
+
+# Settings
+msgctxt "#30200"
+msgid "Nom d'utilisateur"
+
+msgctxt "#30201"
+msgid "Mot de passe"
+
+
+# Settings Titles
+msgctxt "#30300"
+msgid "Connexion"
+
+
+# Dialogs
+
+# Download Dialogs

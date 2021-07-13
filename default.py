@@ -33,22 +33,21 @@ plugin = Plugin()
 
 def make_playlist_items( items ):
     listitems = []
+
     for count,item in enumerate(items):
         listitem = ListItem(
             label = item["name"],
-            label2 = item["name"],
             icon = item["thumbnail"] if "thumbnail" in item else None,
             thumbnail = item["thumbnail"] if "thumbnail" in item else None,
-            path = item["url"] )
-
-        listitem.as_xbmc_listitem().setInfo('music',
-                                            {'tracknumber': count+1,
-                                             'title': item["name"],
-                                             'duration': item["duration"],
-                                             'year': item['year'],
-                                             'album': item['album_name'],
-                                             'artist': item['artist_name'],
-                                             })
+            path = item["url"])
+        listitem.set_info(
+            'music',
+            {'tracknumber': count+1,
+             'duration': item["duration"],
+             'year': item['year'],
+             'album': item['album_name'],
+             'artist': item['artist_name'],
+             })
 
         listitems+=[listitem]
 
@@ -59,15 +58,18 @@ def make_directory_items( items, path ):
         {
             'label': item["name"],
             'path': plugin.url_for( path, url=item['url'] ),
-            'thumbnail': item["thumbnail"] if "thumbnail" in item else None
+            'thumbnail': item["thumbnail"] if "thumbnail" in item else None,
+            'info_type': 'Video', # allows for a description, while the Music type doesn't
+            'info': {
+                'plot': item["description"] if "description" in item else None},
         }
         for item in items ]
 
-@plugin.route('/genres')
+@plugin.cached_route('/genres')
 def get_genres():
     return make_directory_items( accuradio.get_genre_items(), "get_channels" )
 
-@plugin.route('/channels/<url>')
+@plugin.cached_route('/channels/<url>')
 def get_channels( url ):
     return make_directory_items( accuradio.get_channel_items( url ) , "get_playlist" )
 
@@ -101,12 +103,12 @@ def search():
 @plugin.route('/')
 def get_home_page( ):
     return [
-        { 'label' : __settings__.get_string(STR_GENRE), 'path': plugin.url_for('get_genres') },
-        { 'label' : __settings__.get_string(STR_SEARCH), 'path': plugin.url_for('search') },
-        { 'label' : __settings__.get_string(STR_FEATURES), 'path': plugin.url_for('get_features') },
+        { 'label' : plugin.get_string(STR_GENRE), 'path': plugin.url_for('get_genres') },
+        { 'label' : plugin.get_string(STR_SEARCH), 'path': plugin.url_for('search') },
+        { 'label' : plugin.get_string(STR_FEATURES), 'path': plugin.url_for('get_features') },
         ] + ([
-            { 'label' : __settings__.get_string(STR_FAVORITES), 'path': plugin.url_for('get_favorites') },
-            { 'label' : __settings__.get_string(STR_HISTORY), 'path': plugin.url_for('get_history') },
+            { 'label' : plugin.get_string(STR_FAVORITES), 'path': plugin.url_for('get_favorites') },
+            { 'label' : plugin.get_string(STR_HISTORY), 'path': plugin.url_for('get_history') },
         ] if accuradio.isConnected() else [])
 plugin.run()
 
