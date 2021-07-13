@@ -32,11 +32,14 @@ def get_genre_items():
     genres = [
         {
             "name": genre["name"],
-            "url": "https://accuradio.com/c/m/json/genre/?param=" + (genre["canonical_url"] if genre["canonical_url"]!="" else genre["name"].lower())
+            "url": f"https://accuradio.com/c/m/json/genre/?param={get_genre_canonical_url( genre )}"
         }
         for genre in content["brands"] ]
 
     return genres
+
+def get_genre_canonical_url( genre ):
+    return genre["canonical_url"] if genre["canonical_url"]!="" else genre["name"].lower()
 
 def get_channel_items(url):
     content = fetch_url(url)
@@ -44,15 +47,15 @@ def get_channel_items(url):
     channels = [
         {
             "name": channel["name"],
-            "url": "https://accuradio.com/playlist/json/" + channel["_id"]["$oid"],
-            "thumbnail": "https://c2.accu.fm/tiles/default/" + str(channel["oldid"]) + ".jpg"
+            "url": f"https://accuradio.com/playlist/json/{channel['_id']['$oid']}",
+            "thumbnail": f"https://c2.accu.fm/tiles/default/{channel['oldid']}.jpg"
         }
         for channel in content["channels"] ]
                        
     return channels
                     
 def get_track_items(url):
-    content = fetch_url(url + "/?ando=3503&intro=true&spotschedule=594ac69eab53e37d52ff0c34&fa=null&rand=0.5835843411109176&ab=1")
+    content = fetch_url(f"{url}/?ando=3503&intro=true&spotschedule=594ac69eab53e37d52ff0c34&fa=null&rand=0.5835843411109176&ab=1")
     
     tracks = [
         {
@@ -60,15 +63,15 @@ def get_track_items(url):
             "url": track["primary"] + track["fn"] + ".m4a",
             "duration": int(track["duration"]) if "duration" in track else None,
             "artist_name": track["artist"]["artistdisplay"] if "artist" in track else "Anonymous"
-        } | {
+        } | ({
             "album_name": track["album"]["title"],
             "year": track["album"]["year"],
-            "thumbnail": "https://www.accuradio.com/static/images/covers300" + track["album"]["cdcover"],
-        } if "album" in track else {}
+            "thumbnail": f"https://www.accuradio.com/static/images/covers300{track['album']['cdcover']}",
+        } if "album" in track else {})
         for track in content
         if "ad_type" not in track
     ]
-            
+
     return tracks
 
 def fetch_url(url):

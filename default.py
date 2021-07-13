@@ -55,7 +55,13 @@ def make_playlist_items( items ):
     return listitems
 
 def make_directory_items( items, path ):
-    return [ { 'label': item["name"], 'path': plugin.url_for( path, url=item['url'] ), 'thumbnail': item["thumbnail"] if "thumbnail" in item else None } for item in items ]
+    return [
+        {
+            'label': item["name"],
+            'path': plugin.url_for( path, url=item['url'] ),
+            'thumbnail': item["thumbnail"] if "thumbnail" in item else None
+        }
+        for item in items ]
 
 @plugin.route('/genres')
 def get_genres():
@@ -63,7 +69,7 @@ def get_genres():
 
 @plugin.route('/channels/<url>')
 def get_channels( url ):
-    return make_directory_items( accuradio.get_channel_items( url) , "get_playlist" )
+    return make_directory_items( accuradio.get_channel_items( url ) , "get_playlist" )
 
 @plugin.route('/playlist/<url>')
 def get_playlist( url ):
