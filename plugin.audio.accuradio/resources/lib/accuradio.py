@@ -62,7 +62,7 @@ def get_channel_items(url):
     return channels
                     
 def get_track_items(url):
-    content = fetch_url(f"{url}/?ando=3503&intro=true&spotschedule=594ac69eab53e37d52ff0c34&fa=null&rand=0.5835843411109176&ab=1")
+    content = fetch_url(url)
     
     tracks = [
         {

@@ -68,7 +68,7 @@ def get_channels( url ):
 
 @plugin.route('/playlist/<url>')
 def get_playlist( url ):
-    tracks = accuradio.get_track_items(url)
+    tracks = accuradio.get_track_items(url + "/")
 
     playlist = make_playlist_items( tracks )
     
