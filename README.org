@@ -1,0 +1,23 @@
+* Presentation
+The Accuradio addon let's you listen to music from hundreds of playlists in a variety of genres from accuradio.com.
+
+* Installation
+- Download the [[https://github.com/plafrance/accuradio/releases/download/test/accuradio_0.0.1.zip][testing release]] to your Kodi system
+- Install from Kodi (Addons/Install from zip)
+
+* Roadmap
+** What is working so far :
+- browsing genres and channels
+- streaming channels (limited to ~32 tracks)
+
+** What needs to be done :
+- Unlimited streaming
+- Logging in and getting personal history, favorites, etc.
+- Searching
+- Getting featured channels
+
+* Attributions
+Inspired by and some code taken from Brian Hornsby's TuneIn addon
+
+* License
+Released under GPLv3 (see [[https://github.com/plafrance/accuradio/blob/master/LICENSE][LICENSE]])
