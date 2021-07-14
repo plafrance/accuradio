@@ -1,9 +1,10 @@
 from xbmcswift2 import Plugin, xbmc, ListItem
 
+import sys
+import xbmcaddon
 import xbmcgui
 import xbmcplugin
 
-import resources.lib.settings as settings
 import resources.lib.kodiutils as utils
 import resources.lib.accuradio as accuradio
 
@@ -13,19 +14,11 @@ __addonid__ = 'plugin.audio.accuradio'
 __partnerid__ = '1234'
 __author__ = 'Patrick Lafrance'
 
-# Initialise settings.
-__settings__ = settings.Settings(__addonid__, sys.argv)
-
 # Get addon information.
-__addonname__ = __settings__.get_name()
-__version__ = __settings__.get_version()
+__addonname__ = xbmcaddon.Addon(id=__addonid__).getAddonInfo('name')
+__version__ = xbmcaddon.Addon(id=__addonid__).getAddonInfo('version')
 
-# Get addon settings values.
-#__username__ = __settings__.get('username')
-#__password__ = __settings__.get('password')
-__debuglevel__ = 3 #__settings__.get('debuglevel')
-
-__params__ = utils.get_params(__settings__.get_argv(2))
+__params__ = sys.argv[2]
 __path__ = utils.get_value(__params__, 'path')
 __id__ = utils.get_value(__params__, 'id')
 

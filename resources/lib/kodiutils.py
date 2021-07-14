@@ -19,12 +19,6 @@
 # *
 # */
 
-import xbmc
-import xbmcgui
-import unicodedata
-import urllib.parse
-import xml.etree.ElementTree as etree
-
 
 def check_value(value):
     if value is None:
@@ -53,53 +47,6 @@ def get_int(tuple, key):
 def add_params(root, params):
     return '%s?%s' % (root, urllib.parse.urlencode(params))
 
-
-def keyboard(default='', heading='', hidden=False):
-    kb = xbmc.Keyboard(default, heading, hidden)
-    kb.doModal()
-    if (kb.isConfirmed() and len(kb.getText()) > 0):
-        return kb.getText()
-    return None
-
-
-def notification(header, message):
-    command = 'Notification(%s, %s)' % (header, message)
-    xbmc.executebuiltin(command)
-
-
-def ok(heading, line1, line2='', line3=''):
-    dialog = xbmcgui.Dialog()
-    dialog.ok(heading, line1, line2, line3)
-
-
-def select(heading, list):
-    dialog = xbmcgui.Dialog()
-    return dialog.select(heading, list)
-
-
-def yesno(heading, line1, line2='', line3=''):
-    dialog = xbmcgui.Dialog()
-    return dialog.yesno(heading, line1, line2, line3) == 1
-
-
-def mac_address():
-    return xbmc.getInfoLabel('network.macaddress')
-
-
-def add_to_favourites(name, thumb, command):
-    try:
-        favourites = xbmc.translatePath('%s/%s' % ('special://profile/', 'favourites.xml'))
-        tree = etree.parse(favourites)
-        root = tree.getroot()
-        favourite = etree.SubElement(root, 'favourite')
-        favourite.text = command
-        favourite.set('name', name)
-        favourite.set('thumb', thumb)
-        tree.write(favourites)
-    except Exception as exception:
-        print(exception)
-        return False
-    return True
 
 
 def get_params(text):

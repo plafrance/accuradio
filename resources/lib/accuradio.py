@@ -3,7 +3,6 @@ import requests
 import sys
 import xbmc
 import xbmcgui
-import resources.lib.settings as settings
 import resources.lib.kodiutils as utils
 from xbmcswift2 import Plugin
 
@@ -12,7 +11,6 @@ from resources.lib.constants import *
 plugin = Plugin()
 
 __addonid__ = 'plugin.audio.accuradio'
-__settings__ = settings.Settings(__addonid__, sys.argv)
 
 def isConnected():
     return False
@@ -94,17 +92,17 @@ def fetch_url(url):
 def get_listitem_genre():    
     item = xbmcgui.ListItem(
         plugin.get_string(STR_GENRE),
-        __settings__.get_string(STR_GENRE))
+        plugin.get_string(STR_GENRE))
     url = utils.add_params(
-        root=__settings__.get_argv(0), params={'path': 'browse_genres'})
+        root=sys.argv[0], params={'path': 'browse_genres'})
     return (item, url)
 
 def get_listitem_search(): 
     item = xbmcgui.ListItem(
-        __settings__.get_string(STR_SEARCH),
-        __settings__.get_string(STR_SEARCH))        
+        plugin.get_string(STR_SEARCH),
+        plugin.get_string(STR_SEARCH))        
     url = utils.add_params(
-        root=__settings__.get_argv(0), params={'path': 'search'})
+        root=sys.argv[0], params={'path': 'search'})
     
     return (item, url)
 
