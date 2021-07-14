@@ -3,8 +3,7 @@
 # Addon id: plugin.audio.accuradio
 # Addon Provider: Patrick Lafrance
 
-msgid ""
-msgstr ""
+msgid "strmsgid ""
 "Project-Id-Version: Kodi Addons\n"
 "Report-Msgid-Bugs-To: https://forum.kodi.tv/\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -24,12 +23,12 @@ msgid "Genres"
 msgstr "Genres"
 
 msgctxt "#30101"
-msgid "Rechercher"
-msgstr "Search"
+msgid "Search"
+msgstr "Rechercher"
 
 msgctxt "#30105"
-msgid "stations"
-msgstr "channels"
+msgid "channels"
+msgstr "stations"
 
 msgctxt "#30106"
 msgid "tracks"
@@ -37,18 +36,18 @@ msgstr "pistes"
 
 # Settings
 msgctxt "#30200"
-msgid "Nom d'utilisateur"
-msgstr "Username"
+msgid "Username"
+msgstr "Nom d'utilisateur"
 
 msgctxt "#30201"
-msgid "Mot de passe"
-msgstr "Password"
+msgid "Password"
+msgstr "Mot de passe"
 
 
 # Settings Titles
 msgctxt "#30300"
-msgid "Connexion"
-msgstr "Connection"
+msgid "Connection"
+msgstr "Connexion"
 
 
 # Dialogs

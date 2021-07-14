@@ -4,7 +4,6 @@
 # Addon Provider: Patrick Lafrance
 
 msgid ""
-msgstr ""
 "Project-Id-Version: Kodi Addons\n"
 "Report-Msgid-Bugs-To: https://forum.kodi.tv/\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -23,25 +22,25 @@ msgctxt "#30100"
 msgid "Genres"
 
 msgctxt "#30101"
-msgid "Rechercher"
+msgid "Search"
 
 msgctxt "#30105"
-msgid "stations"
+msgid "channels"
 
 msgctxt "#30106"
 msgid "tracks"
 
 # Settings
 msgctxt "#30200"
-msgid "Nom d'utilisateur"
+msgid "Username"
 
 msgctxt "#30201"
-msgid "Mot de passe"
+msgid "Password"
 
 
 # Settings Titles
 msgctxt "#30300"
-msgid "Connexion"
+msgid "Connection"
 
 
 # Dialogs

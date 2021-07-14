@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings version="1">
-  <section id="plugin.audio.accuradio">
+<settings>
 	<category label="30300">
 	  <setting id="username" type="text" label="30200" default=""/>
 	  <setting id="password" type="text" option="hidden" label="30201" enable="!eq(-1,)" default=""/>
 	</category>
-  </section>
 </settings>

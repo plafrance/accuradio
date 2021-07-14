@@ -13,13 +13,15 @@
 		<summary lang="en">Accuradio - Music streaming</summary>
 		<summary lang="fr">Accuradio - Musique en continu</summary>
 		<description lang="en">Accuradio let's you listen to music from hundreds of playlists in a variety of genres.</description>
-		<description lang="fr">Accuradio vous permet d'écouter des centaines le listes de lectures de tous genres. </description>
+		<description lang="fr">Accuradio vous permet d'écouter des centaines le listes de lectures musicales dans une multitude de genres. </description>
         <disclaimer lang="en">This plugin is not official, approved or endorsed by Accuradio.</disclaimer>		
         <disclaimer lang="fr">Cet addiciel n'est pas officiellement approuvé par Accuradio.</disclaimer>		
 		<language></language>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
         <assets>
           <icon>resources/images/icon.png</icon>
+		  <screenshot>resources/images/screenshot_1.jpg</screenshot>
+		  <screenshot>resources/images/screenshot_2.jpg</screenshot>
 		</assets>		
 	</extension>
 </addon>
