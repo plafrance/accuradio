@@ -58,11 +58,11 @@ def make_directory_items( items, path ):
         }
         for item in items ]
 
-@plugin.cached_route('/genres')
+@plugin.route('/genres')
 def get_genres():
     return make_directory_items( accuradio.get_genre_items(), "get_channels" )
 
-@plugin.cached_route('/channels/<url>')
+@plugin.route('/channels/<url>')
 def get_channels( url ):
     return make_directory_items( accuradio.get_channel_items( url ) , "get_playlist" )
 
