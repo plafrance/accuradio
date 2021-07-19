@@ -96,12 +96,7 @@ def search():
 @plugin.route('/')
 def get_home_page( ):
     return [
-        { 'label' : plugin.get_string(STR_GENRE), 'path': plugin.url_for('get_genres') },
-        { 'label' : plugin.get_string(STR_SEARCH), 'path': plugin.url_for('search') },
-        { 'label' : plugin.get_string(STR_FEATURES), 'path': plugin.url_for('get_features') },
-        ] + ([
-            { 'label' : plugin.get_string(STR_FAVORITES), 'path': plugin.url_for('get_favorites') },
-            { 'label' : plugin.get_string(STR_HISTORY), 'path': plugin.url_for('get_history') },
-        ] if accuradio.isConnected() else [])
+        { 'label' : plugin.get_string(STR_GENRE), 'path': plugin.url_for('get_genres') }
+        ]
 plugin.run()
 

@@ -19,7 +19,7 @@ msgid "strmsgid ""
 
 # Labels
 msgctxt "#30100"
-msgid "Genres"
+msgid "Parcourir les genres"
 msgstr "Genres"
 
 msgctxt "#30101"

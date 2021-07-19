@@ -12,9 +12,6 @@ plugin = Plugin()
 
 __addonid__ = 'plugin.audio.accuradio'
 
-def isConnected():
-    return False
-
 def get_home_page_items():
     return [
         {
