@@ -30,8 +30,8 @@ def make_playlist_items( items ):
     for count,item in enumerate(items):
         listitem = ListItem(
             label = item["name"],
-            icon = item["thumbnail"] if "thumbnail" in item else None,
-            thumbnail = item["thumbnail"] if "thumbnail" in item else None,
+            icon = item["thumbnail"],
+            thumbnail = item["thumbnail"],
             path = item["url"])
         listitem.set_info(
             'music',

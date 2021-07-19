@@ -64,22 +64,35 @@ def get_channel_items(url):
 def get_track_items(url):
     content = fetch_url(url)
     
-    tracks = [
-        {
-            "name": track["title"],
-            "url": track["primary"] + track["fn"] + ".m4a",
-            "duration": int(track["duration"]) if "duration" in track else None,
-            "artist_name": track["artist"]["artistdisplay"] if "artist" in track else "Anonymous"
-        } | ({
-            "album_name": track["album"]["title"],
-            "year": track["album"]["year"],
-            "thumbnail": f"https://www.accuradio.com/static/images/covers300{track['album']['cdcover']}",
-        } if "album" in track else {
-            "thumbnail": "https://static.accuradio.com/static/images/2014/defaultTile.jpg"
-        })
-        for track in content
-        if "ad_type" not in track
-    ]
+    tracks = []
+    
+    for track in content:
+        if "ad_type" not in track:
+            new_track = {
+                "name": track["title"],
+                "url": track["primary"] + track["fn"] + ".m4a",
+                "duration": int(track["duration"]) if "duration" in track else None,
+                "artist_name": track["track_artist"] if "artist_name" in track else "Anonymous",
+            }
+           
+            if "album" in track:
+                new_track.update(
+                    {
+                        "album_name": track["album"]["title"],
+                        "year": track["album"]["year"],
+                        "thumbnail": f"https://www.accuradio.com/static/images/covers300{track['album']['cdcover']}",
+                    })
+            else:
+                new_track.update(
+                    {
+                        "album_name": "",
+                        "year": "",
+                        "thumbnail": "https://static.accuradio.com/static/images/2014/defaultTile.jpg"
+                    }
+                )
+                
+            tracks+= [new_track]
+            
 
     return tracks
 
