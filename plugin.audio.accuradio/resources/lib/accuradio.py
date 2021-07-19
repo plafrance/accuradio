@@ -72,7 +72,7 @@ def get_track_items(url):
                 "name": track["title"],
                 "url": track["primary"] + track["fn"] + ".m4a",
                 "duration": int(track["duration"]) if "duration" in track else None,
-                "artist_name": track["track_artist"] if "artist_name" in track else "Anonymous",
+                "artist_name": track["track_artist"] if "track_artist" in track else "Anonymous",
             }
            
             if "album" in track:
